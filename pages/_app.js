@@ -1,14 +1,13 @@
 import App, { Container } from 'next/app'
 import React from 'react'
-import { ThemeProvider } from 'styled-components'
+import { Provider } from 'react-redux'
+import withRedux from 'next-redux-wrapper'
+import withReduxSaga from 'next-redux-saga'
 
-const theme = {
-  colors: {
-    primary: '#0070f3'
-  }
-}
+import Store from '../ducks/store'
+import { loadData } from '../ducks/actions' 
 
-export default class MyApp extends App {
+class MyApp extends App {
   static async getInitialProps ({ Component, ctx }) {
     let pageProps = {}
 
@@ -18,15 +17,19 @@ export default class MyApp extends App {
 
     return { pageProps }
   }
-
+  componentDidMount(){
+    this.props.store.dispatch(loadData())
+  }
   render () {
-    const { Component, pageProps } = this.props
+    const { Component, pageProps, store } = this.props
     return (
       <Container>
-        <ThemeProvider theme={theme}>
+        <Provider store={store}>
           <Component {...pageProps} />
-        </ThemeProvider>
+        </Provider>
       </Container>
     )
   }
 }
+
+export default withRedux(Store)(withReduxSaga(MyApp))

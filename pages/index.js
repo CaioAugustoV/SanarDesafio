@@ -1,10 +1,16 @@
 import React from 'react'
 import Home from '../compoments/Home'
 
-export default function index() {
+import { connect } from 'react-redux'
+
+function index(props) {
+  // console.log(props.dispatch(loadData()))
+  console.log(props)
   return (
     <>
-     <Home/> 
+     {/* <Home/>  */}
     </>
   )
 }
+
+export default connect(state => state)(index)
