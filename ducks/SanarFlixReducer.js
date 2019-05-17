@@ -1,15 +1,15 @@
-import { actionTypes } from './actions'
+import { actionTypes } from './SanarFlixActions'
 
-export const initialStateA = {
-  placeholderData: null
+export const INITIAL_STATE = {
+  cursosData: {}
 }
 
 function reducer (state = initialState, action) {
   switch (action.type) {
-    case actionTypes.LOAD_DATA_RES:
+    case actionTypes.CURSOS_DATA:
       return {
         ...state,
-        ...{ placeholderData: action.data }
+        ...{ cursosData: action.data }
       }
 
     default:

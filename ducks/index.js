@@ -1,8 +1,8 @@
 import { applyMiddleware, createStore } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 
-import rootReducer, { initialStateA } from './reducer'
-import rootSaga from './saga'
+import rootReducer, { INITIAL_STATE } from './SanarFlixReducer'
+import rootSaga from './SanarFlixSaga'
 
 const bindMiddleware = middleware => {
   if (process.env.NODE_ENV !== 'production') {
@@ -12,7 +12,7 @@ const bindMiddleware = middleware => {
   return applyMiddleware(...middleware)
 }
 
-function configureStore (initialState = initialStateA) {
+function configureStore (initialState = INITIAL_STATE) {
   const sagaMiddleware = createSagaMiddleware()
   const store = createStore(
     rootReducer,

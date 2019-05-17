@@ -4,8 +4,8 @@ import { Provider } from 'react-redux'
 import withRedux from 'next-redux-wrapper'
 import withReduxSaga from 'next-redux-saga'
 
-import Store from '../ducks/store'
-import { loadData } from '../ducks/actions' 
+import Store from '../ducks'
+import { loadData } from '../ducks/SanarFlixActions' 
 
 class MyApp extends App {
   static async getInitialProps ({ Component, ctx }) {
