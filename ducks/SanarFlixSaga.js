@@ -2,7 +2,7 @@
 
 import { all, put, takeLatest } from 'redux-saga/effects'
 
-import { actionTypes, cursosDataRes, profsDataRes } from './SanarFlixActions'
+import { actionTypes, cursosDataRes, profsDataRes, ModulosDataRes } from './SanarFlixActions'
 
 function * loadDataCursos () {
   try {
@@ -24,22 +24,21 @@ function * loadDataProfessores () {
   }
 }
 
-// function * loadDataCursos () {
-//   try {
-//     const res = yield fetch(`https://5b7570f8deca780014ec9f86.mockapi.io/v1/cursos`)
-//     const data = yield res.json()
-//     yield put(cursosDataRes(data))
-//   } catch (err) {
-//     yield put(cursosDataRes(null))
-//   }
-// }
-
-// https://5b7570f8deca780014ec9f86.mockapi.io/v1/modulos
+function * loadDataModulos () {
+  try {
+    const res = yield fetch(`https://5b7570f8deca780014ec9f86.mockapi.io/v1/modulos`)
+    const data = yield res.json()
+    yield put(ModulosDataRes(data))
+  } catch (err) {
+    yield put(ModulosDataRes(null))
+  }
+}
 
 function * rootSaga () {
   yield all([
     takeLatest(actionTypes.LOAD_DATA, loadDataCursos),
     takeLatest(actionTypes.LOAD_DATA, loadDataProfessores),
+    takeLatest(actionTypes.LOAD_DATA, loadDataModulos),
   ])
 }
 
