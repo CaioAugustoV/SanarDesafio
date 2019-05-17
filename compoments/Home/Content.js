@@ -1,21 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import styled from "styled-components";
 import MainCaroussel from "./MainCaroussel"
+import { connect } from 'react-redux'
 
 const Main = styled.div``;
 
-export default function Content() {
-  const [API, setAPI] = useState('')
-  useEffect(() => {
-    fetch('https://5b7570f8deca780014ec9f86.mockapi.io/v1/cursos')
-      .then(response => response.json())
-      .then(data => setAPI({ data }));
-  }, [])
+function Content(props) {
+  console.log(props.cursosData)
   return (
     <Main>
-      <MainCaroussel data={API} title="Cursos"/>
-      <MainCaroussel data={API} title="Tudo sobre diabetes"/>
-      <MainCaroussel data={API} title="Mais acessados"/>
+      <MainCaroussel itens={props.cursosData} title="Cursos"/>
+      <MainCaroussel itens={props.cursosData} title="Tudo sobre diabetes"/>
+      <MainCaroussel itens={props.cursosData} title="Mais acessados"/>
     </Main>
   )
 }
+
+export default connect(state => state)(Content)

@@ -3,10 +3,9 @@ import Home from '../compoments/Home'
 import { connect } from 'react-redux'
 
 function index(props) {
-  console.log(props)
   return (
     <>
-     {/* <Home/> */}
+     <Home/>
     </>
   )
 }

@@ -1,9 +1,9 @@
 import { actionTypes } from './SanarFlixActions'
 
 export const INITIAL_STATE = {
-  cursosData: {},
-  profsData: {},
-  modulosData: {},
+  cursosData: [],
+  profsData: [],
+  modulosData: [],
 }
 
 function reducer (state = initialState, action) {

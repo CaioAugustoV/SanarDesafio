@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Carousel } from 'antd';
+import { Carousel, Skeleton } from 'antd';
 
 const SliderHolder = styled.div`
   margin-bottom: 40px;
@@ -12,6 +12,14 @@ const SliderHolder = styled.div`
   }
   .slick-list {
     padding-left: 5vw;
+  }
+  .slick-slide{
+    margin: 0 20px;
+  }
+  .slick-track{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
   }
 `;
 
@@ -27,7 +35,7 @@ const CarouselRow = styled.div`
     ? 
     `url('${props.background}')no-repeat center center / cover` 
     : 
-    '#000'};
+    '#00000087'};
   border-radius: 5px;
   display: flex;
   align-items: flex-end;
@@ -58,10 +66,15 @@ export default function MainCaroussel(props) {
           dots={false}
           draggable
         >
-          {props.data.data &&
-            props.data.data.map((item, index) => (
-              <div key={index}>{resolveCursesList(item, index)}</div>
-            ))}
+          {
+            props.itens 
+            && 
+            props.itens.map( (item, index) => (
+              <div key={index}>
+                {resolveCursesList(item, index)}
+              </div>
+            )) 
+          }
         </Carousel>
       </CarouselHeight>
     </SliderHolder>
