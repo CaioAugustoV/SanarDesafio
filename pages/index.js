@@ -6,7 +6,7 @@ function index(props) {
   console.log(props)
   return (
     <>
-     <Home/>
+     {/* <Home/> */}
     </>
   )
 }

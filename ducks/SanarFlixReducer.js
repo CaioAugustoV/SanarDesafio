@@ -1,7 +1,8 @@
 import { actionTypes } from './SanarFlixActions'
 
 export const INITIAL_STATE = {
-  cursosData: {}
+  cursosData: {},
+  profsData: {}
 }
 
 function reducer (state = initialState, action) {
@@ -12,6 +13,12 @@ function reducer (state = initialState, action) {
         ...{ cursosData: action.data }
       }
 
+    case actionTypes.PROFS_DATA:
+      return {
+        ...state,
+        ...{ profsData: action.data }
+      }
+    
     default:
       return state
   }
