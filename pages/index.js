@@ -3,11 +3,7 @@ import Home from '../compoments/Home'
 import { connect } from 'react-redux'
 
 function index(props) {
-  return (
-    <>
-     <Home/>
-    </>
-  )
+  return <Home/>
 }
 
 export default connect(state => state)(index)

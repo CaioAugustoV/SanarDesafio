@@ -6,7 +6,6 @@ import { connect } from 'react-redux'
 const Main = styled.div``;
 
 function Content(props) {
-  console.log(props.cursosData)
   return (
     <Main>
       <MainCaroussel itens={props.cursosData} title="Cursos"/>

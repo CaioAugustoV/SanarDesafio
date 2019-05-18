@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Carousel, Skeleton } from 'antd';
+import { Carousel } from 'antd';
 
 const SliderHolder = styled.div`
   margin-bottom: 40px;

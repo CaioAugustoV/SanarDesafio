@@ -1,5 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import Teachers from "./CarouselTeachers"
+import { connect } from 'react-redux'
+import MainCaroussel from '../Home/MainCaroussel'
 
 const Main = styled.div`
   position: relative;
@@ -43,8 +46,24 @@ const Box = styled.div`
   }
 `;
 
-export default function Content() {
+const Button = styled.div`
+  color: #fff;
+  background: #e62e2e;
+  border: none;
+  padding: 5px 60px;
+  margin: 0 10px;
+  border-radius: 16px;
+  box-shadow: 0px 0px 20px 0px rgba(230,46,46,0.6);
+  cursor: pointer;
+  width: 10vw;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 90px;
+  transition: .5s ease;
+`;
+function Content(props) {
   return (
+    <>
     <Main>
       <iframe
         width="560"
@@ -106,5 +125,9 @@ export default function Content() {
         </p>
       </MainText>
     </Main>
+    <Teachers/>
+    <Button>Assine agora</Button>
+    </>
   );
 }
+export default connect(state => state)(Content)

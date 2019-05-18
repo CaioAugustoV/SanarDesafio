@@ -11,10 +11,10 @@ const MainMenu = styled.div`
   width: 100vw;
   position: fixed;
   z-index: 9;
-  padding: 0 1vw;
 `;
 
 const Itens = styled.div`
+  padding: 0 1vw;
   display: flex;
   align-items: center;
   height: 100%;
@@ -139,8 +139,8 @@ export default function Menu(props) {
           <span />
           <img src="./static/img/search.png" />
         </Input>
-        <p>Entrar</p>
-        <button>Assine</button>
+        <Link href="/login"><p>Entrar</p></Link>
+        <Link href="/lading"><button>Assine</button></Link>
       </Itens>
     </MainMenu>
   );
