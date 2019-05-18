@@ -1,6 +1,10 @@
 import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 import Link from 'next/link'
+import { connect } from 'react-redux'
+import { SearchCursos } from '../../ducks/SanarFlixActions'
+
+const _ = require('lodash');
 
 const MainMenu = styled.div`
   background: rgba(12,29,41,0.9);
@@ -93,28 +97,34 @@ const Input = styled.div`
   }
 `;
 
-export default function Menu(props) {
+function Menu(props) {
   const [MenuActive, setMenuActive] = useState(0)
 
   useEffect(() => {
     HandleMenu()
   }, [])
-
+  
   function HandleMenu(){
     switch (props.menu) {
       case 'home':
-        setMenuActive(2)
+      setMenuActive(2)
       break;
       case 'sobre':
-        setMenuActive(3)
+      setMenuActive(3)
       break;
       case 'landing':
-        setMenuActive(4)
+      setMenuActive(4)
       break;
       default:
-        break;
+      break;
     }
   }
+  
+  function SetSearch(val){
+    // _.find(props.cursosData, function(index){console.log(index.area == val)})
+    // props.dispatch(SearchCursos())
+  }
+  console.log(props.cursosData)
   return (
     <MainMenu>
       <Itens active={MenuActive}>
@@ -135,9 +145,9 @@ export default function Menu(props) {
       </Itens>
       <Itens>
         <Input>
-          <input type="text" placeholder="Busque seu curso"/>
+          <input onBlur={ (e) => SetSearch(e.target.value)} type="text" placeholder="Busque seu curso"/>
           <span />
-          <img src="./static/img/search.png" />
+          <img src="./static/img/search.png"/>
         </Input>
         <Link href="/login"><p>Entrar</p></Link>
         <Link href="/lading"><button>Assine</button></Link>
@@ -145,3 +155,5 @@ export default function Menu(props) {
     </MainMenu>
   );
 }
+
+export default connect(state => state)(Menu)

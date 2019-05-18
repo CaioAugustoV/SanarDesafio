@@ -4,6 +4,7 @@ export const INITIAL_STATE = {
   cursosData: [],
   profsData: [],
   modulosData: [],
+  searchCursos: '',
 }
 
 function reducer (state = initialState, action) {
@@ -24,6 +25,12 @@ function reducer (state = initialState, action) {
       return {
         ...state,
         ...{ modulosData: action.data }
+      }
+
+    case actionTypes.SEARCH_CURSOS:
+      return {
+        ...state,
+        ...{ searchCursos: action.data }
       }
     default:
       return state

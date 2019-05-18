@@ -140,7 +140,7 @@ function About(props) {
           draggable
           ref={CarouselRef}
         >
-          {props.profsData && props.profsData.map( itens => <div>{renderCards(itens)}</div>)}
+          {props.profsData && props.profsData.map( itens => <div key={itens.id}>{renderCards(itens)}</div>)}
         </Carousel>
         <ButtonOne onClick={() => DirectionCarousel('prev')}>
           <img src="./static/img/back.png" />
