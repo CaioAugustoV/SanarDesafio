@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Teachers from "./CarouselTeachers"
 import { connect } from 'react-redux'
 import MainCaroussel from '../Home/MainCaroussel'
+import Link from 'next/link'
 
 const Main = styled.div`
   position: relative;
@@ -126,7 +127,7 @@ function Content(props) {
       </MainText>
     </Main>
     <Teachers/>
-    <Button>Assine agora</Button>
+    <Link href="/lading"><Button>Assine agora</Button></Link>
     </>
   );
 }

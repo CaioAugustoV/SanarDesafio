@@ -8,7 +8,7 @@ const Main = styled.div``;
 function Content(props) {
   return (
     <Main>
-      <MainCaroussel itens={props.cursosData} title="Cursos"/>
+      <div id="Cursos"><MainCaroussel itens={props.cursosData} title="Cursos"/></div>
       <MainCaroussel itens={props.cursosData} title="Tudo sobre diabetes"/>
       <MainCaroussel itens={props.cursosData} title="Mais acessados"/>
     </Main>

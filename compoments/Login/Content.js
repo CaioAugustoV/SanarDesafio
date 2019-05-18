@@ -1,5 +1,9 @@
-import React from 'react'
+import React, { useState } from "react";
 import styled from "styled-components";
+import Login from "../../json/login";
+import Router from 'next/router'
+
+const _ = require("lodash");
 
 const Main = styled.div`
   width: 100vw;
@@ -39,32 +43,34 @@ const Input = styled.input`
   border: 2px solid transparent;
   background-color: #f0f0f0;
   font-size: 14px;
-  transition: .5s ease;
-  :hover{
+  ${props => props.typeInputLogin ? 'border-color: #e62e2e !important;' : '' }
+  ${props => props.typeInputPassword ? 'border-color: #e62e2e !important;' : '' }
+  transition: 0.5s ease;
+  :hover {
     border: 2px solid #9b9b9b;
-  } 
-  :focus{
+  }
+  :focus {
     outline: none;
     border: 2px solid #9b9b9b;
   }
 `;
 
 const Button = styled.button`
-    width: 152px;
-    font-size: 16px;
-    background-color: #2472ea;
-    border-radius: 30px;
-    text-align: center;
-    color: #ffffff;
-    font-weight: bold;
-    border: none;
-    height: 30px;
-    padding: 6px 52px;
-    cursor: pointer;
-    transition: .5s ease;
-    :hover{
-      transform: scale(1.1)
-    }
+  width: 152px;
+  font-size: 16px;
+  background-color: #2472ea;
+  border-radius: 30px;
+  text-align: center;
+  color: #ffffff;
+  font-weight: bold;
+  border: none;
+  height: 30px;
+  padding: 6px 52px;
+  cursor: pointer;
+  transition: 0.5s ease;
+  :hover {
+    transform: scale(1.1);
+  }
 `;
 
 const MainBottuns = styled.div`
@@ -78,9 +84,9 @@ const MainBottuns = styled.div`
 
 const Forgot = styled.p`
   margin: 0;
-  transition: .5s ease;
-  :hover{
-    opacity: .5;
+  transition: 0.5s ease;
+  :hover {
+    opacity: 0.5;
   }
 `;
 
@@ -89,7 +95,7 @@ const Remember = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  p{
+  p {
     margin: 0;
     font-weight: normal;
   }
@@ -98,24 +104,65 @@ const Remember = styled.div`
 const Sanar = styled.p`
   color: #999;
   padding: 20px 0;
-  transition: .5s ease;
-  :hover{
-    opacity: .5;
+  transition: 0.5s ease;
+  :hover {
+    opacity: 0.5;
   }
 `;
 
 export default function Content() {
+  const [LoginState, setLoginState] = useState({
+    login: "",
+    senha: ""
+  });
+  const [TypeInputLogin, setTypeInputLogin] = useState(false);
+  const [TypeInputPassword, setTypeInputPassword] = useState(false);
+  function LoginRequest() {
+    let request = _.filter(Login.acess, function(index) {
+      return index.login == LoginState.login;
+    });
+    if(request[0] == undefined){
+      setTypeInputLogin(true)
+      setTypeInputPassword(true)
+    }else{
+      LoginVerification(request[0])
+    }
+  }
+
+  function LoginVerification(val) {
+    if(val.login == LoginState.login && val.senha == LoginState.senha){
+      Router.push('/')
+    }else{
+      setTypeInputPassword(true)
+    }
+  }
+  console.log(TypeInputLogin)
+  console.log(TypeInputPassword)
   return (
     <Main>
       <ContentLogin>
         <Title>Bem-vindo de volta!</Title>
         <InputMain>
           <Label>E-mail</Label>
-          <Input placeholder="Email" type="text" />
+          <Input
+            onChange={e =>
+              setLoginState({ ...LoginState, login: e.target.value })
+            }
+            placeholder="Email"
+            type="text"
+            typeInputLogin={TypeInputLogin}
+          />
         </InputMain>
         <InputMain>
           <Label>Senha</Label>
-          <Input placeholder="Senha" type="password" />
+          <Input
+            onChange={e =>
+              setLoginState({ ...LoginState, senha: e.target.value })
+            }
+            placeholder="Senha"
+            type="password"
+            typeInputPassword={TypeInputPassword}
+          />
         </InputMain>
         <MainBottuns>
           <Remember>
@@ -124,9 +171,9 @@ export default function Content() {
           </Remember>
           <Forgot>Esqueceu senha</Forgot>
         </MainBottuns>
-        <Button>Entrar</Button>
+        <Button onClick={() => LoginRequest()}>Entrar</Button>
         <Sanar>Assine o SanarFlix</Sanar>
       </ContentLogin>
     </Main>
-  )
+  );
 }

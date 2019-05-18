@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
+import Link from 'next/link'
+import AnchorLink from 'react-anchor-link-smooth-scroll'
 
 const MainHeader = styled.div`
   width: 100vw;
@@ -78,8 +80,8 @@ export default function Header() {
           </p>
         </Texts>
         <Buttons>
-          <ButtonAssine>Assine agora</ButtonAssine>
-          <ButtonCursos>Conheça nossos cursos</ButtonCursos>
+        <Link href="/lading"><ButtonAssine>Assine agora</ButtonAssine></Link>
+        <AnchorLink offset='100' href="#Cursos"><ButtonCursos>Conheça nossos cursos</ButtonCursos></AnchorLink>
         </Buttons>
       </ContainerHeader>
     </MainHeader>

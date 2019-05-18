@@ -121,10 +121,9 @@ function Menu(props) {
   }
   
   function SetSearch(val){
-    // _.find(props.cursosData, function(index){console.log(index.area == val)})
+    _.filter(props.cursosData, function(index){console.log(index.nome == val)})
     // props.dispatch(SearchCursos())
   }
-  console.log(props.cursosData)
   return (
     <MainMenu>
       <Itens active={MenuActive}>
