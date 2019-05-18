@@ -14,7 +14,7 @@ const SliderHolder = styled.div`
     padding-left: 5vw;
   }
   .slick-slide{
-    margin: 0 20px;
+    margin: 0 5px;
   }
   .slick-track{
     display: flex;

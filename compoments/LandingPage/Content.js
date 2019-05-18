@@ -85,8 +85,9 @@ function Content(props) {
   
   function Cursos(val){
     return (
-      <Collapse onClick={ () => val.id === Active ? setActive(false) : setActive(val.id)}>
-        <Panel 
+      <Collapse>
+        <Panel
+          onClick={ () => val.id === Active ? setActive(false) : setActive(val.id)}
           key={val.id}
           active={Active === val.id ? true : false}
         >

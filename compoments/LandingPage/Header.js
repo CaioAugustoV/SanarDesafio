@@ -21,6 +21,9 @@ const ContainerHeader = styled.div`
 const Texts = styled.div`
   width: 45%;
   color: #fff;
+  h2{
+    color: #fff;
+  }
 `;
 
 const MainItens = styled.div`

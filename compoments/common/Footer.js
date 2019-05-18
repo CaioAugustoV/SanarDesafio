@@ -83,14 +83,14 @@ const Modal = styled.div`
   justify-content: center;
   div{
     background: #313131;
-    width: 60%;
+    width: 40%;
     padding: 5px 40px;
     color: #fff;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     h2{
-
+      color: #fff;
     }
     p{
       font-weight: bold;

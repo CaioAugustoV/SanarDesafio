@@ -24,7 +24,7 @@ const Itens = styled.div`
   height: 100%;
   div{
     padding: 10px;
-    height: calc(100% - 20px);
+    height: 100%;
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -35,7 +35,7 @@ const Itens = styled.div`
   }
   div:nth-child(${props => props.active}){
     border-bottom: 2px solid #fff;
-    height: calc(100% - 22px);
+    height: calc(100% - 2px);
   }
   img{
     height: 85%;

@@ -2,8 +2,16 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Login from "../../json/login";
 import Router from 'next/router'
+import { notification } from 'antd';
 
 const _ = require("lodash");
+
+const openNotificationWithIcon = (type, title, mensage) => {
+  notification[type]({
+    message: title,
+    description: mensage,
+  });
+};
 
 const Main = styled.div`
   width: 100vw;
@@ -122,6 +130,7 @@ export default function Content() {
       return index.login == LoginState.login;
     });
     if(request[0] == undefined){
+      openNotificationWithIcon('error', 'Erro', 'Email não encontrado no nosso banco de dados')
       setTypeInputLogin(true)
       setTypeInputPassword(true)
     }else{
@@ -131,8 +140,10 @@ export default function Content() {
 
   function LoginVerification(val) {
     if(val.login == LoginState.login && val.senha == LoginState.senha){
+      openNotificationWithIcon('success', 'Parabens', 'Você logou com sucesso')
       Router.push('/')
     }else{
+      openNotificationWithIcon('error', 'Erro', 'Você usou a senha errada')
       setTypeInputPassword(true)
     }
   }
@@ -148,6 +159,7 @@ export default function Content() {
             onChange={e =>
               setLoginState({ ...LoginState, login: e.target.value })
             }
+            onBlur={ () => setTypeInputLogin(false)}
             placeholder="Email"
             type="text"
             typeInputLogin={TypeInputLogin}
@@ -159,6 +171,7 @@ export default function Content() {
             onChange={e =>
               setLoginState({ ...LoginState, senha: e.target.value })
             }
+            onBlur={ () => setTypeInputPassword(false)}
             placeholder="Senha"
             type="password"
             typeInputPassword={TypeInputPassword}
